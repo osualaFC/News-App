@@ -1,13 +1,14 @@
-package com.example.newsapp
+package com.example.newsapp.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.newsapp.R
 
 
-class SearchNewsFragment : Fragment() {
+class BreakingNewFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -15,7 +16,7 @@ class SearchNewsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search_news, container, false)
+        return inflater.inflate(R.layout.fragment_breaking_new, container, false)
     }
 
 
