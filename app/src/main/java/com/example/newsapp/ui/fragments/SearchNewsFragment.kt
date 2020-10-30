@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newsapp.R
 import com.example.newsapp.adapters.NewsAdapter
@@ -74,6 +75,16 @@ class SearchNewsFragment : Fragment() {
                 }
             }
         })
+
+        newsAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("article", it)
+            }
+            findNavController().navigate(
+                R.id.action_searchNewsFragment2_to_articleFragment2,
+                bundle
+            )
+        }
     }
 
     private fun hideProgressBar() {

@@ -6,10 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newsapp.R
 import com.example.newsapp.adapters.NewsAdapter
@@ -42,6 +44,19 @@ class BreakingNewFragment : Fragment() {
 
         setUpRecyclerView()
 
+
+        newsAdapter.setOnItemClickListener {
+
+            Toast.makeText(requireContext(), "clicked", Toast.LENGTH_SHORT).show()
+            val bundle = Bundle().apply {
+                putSerializable("article", it)
+            }
+            findNavController().navigate(
+                R.id.articleFragment2,
+                bundle
+            )
+        }
+
         /**subscribe to liveData changes**/
         viewModel.breakingNews.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
@@ -65,6 +80,8 @@ class BreakingNewFragment : Fragment() {
                 }
             }
         })
+
+
     }
 
     private fun hideProgressBar(){
