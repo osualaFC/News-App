@@ -47,7 +47,6 @@ class BreakingNewFragment : Fragment() {
 
         newsAdapter.setOnItemClickListener {
 
-            Toast.makeText(requireContext(), "clicked", Toast.LENGTH_SHORT).show()
             val bundle = Bundle().apply {
                 putSerializable("article", it)
             }
