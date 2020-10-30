@@ -8,17 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
 import android.widget.Toast
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.R
 import com.example.newsapp.adapters.NewsAdapter
-import com.example.newsapp.repository.NewsRepository
-import com.example.newsapp.ui.MainActivity
 import com.example.newsapp.ui.NewsViewModel
 import com.example.newsapp.utils.Constants.Companion.QUERY_PAGE_SIZE
 import com.example.newsapp.utils.Resource
@@ -30,6 +26,10 @@ class BreakingNewFragment : Fragment() {
     lateinit var viewModel: NewsViewModel
 
     lateinit var newsAdapter: NewsAdapter
+
+    var isLoading = false
+    var isLastPage = false
+    var isScrolling = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,7 +73,7 @@ class BreakingNewFragment : Fragment() {
                 is Resource.Error -> {
                     hideProgressBar()
                     response.message?.let { message ->
-                        Log.e(TAG, "An error occured: $message")
+                        Toast.makeText(activity, "An error occured: $message", Toast.LENGTH_LONG).show()
                     }
                 }
                 is Resource.Loading -> {
@@ -93,11 +93,9 @@ class BreakingNewFragment : Fragment() {
         isLoading = true
     }
 
-    var isLoading = false
-    var isLastPage = false
-    var isScrolling = false
 
-    val scrollListener = object : RecyclerView.OnScrollListener() {
+
+    private val scrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
 
