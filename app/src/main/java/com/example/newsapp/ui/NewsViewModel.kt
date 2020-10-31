@@ -32,6 +32,7 @@ class NewsViewModel(application: Application, val newsRepository: NewsRepository
 
 
 
+
     init{
 
         getBreakingNews("ng")

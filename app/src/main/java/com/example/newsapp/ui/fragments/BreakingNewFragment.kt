@@ -1,7 +1,6 @@
 package com.example.newsapp.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.R
 import com.example.newsapp.adapters.NewsAdapter
+import com.example.newsapp.models.Article
 import com.example.newsapp.ui.NewsViewModel
 import com.example.newsapp.utils.Constants.Companion.QUERY_PAGE_SIZE
 import com.example.newsapp.utils.Resource
@@ -26,6 +26,7 @@ class BreakingNewFragment : Fragment() {
     lateinit var viewModel: NewsViewModel
 
     lateinit var newsAdapter: NewsAdapter
+
 
     var isLoading = false
     var isLastPage = false
@@ -57,6 +58,8 @@ class BreakingNewFragment : Fragment() {
             )
         }
 
+
+
         viewModel.breakingNews.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
                 is Resource.Success -> {
@@ -75,12 +78,17 @@ class BreakingNewFragment : Fragment() {
                     response.message?.let { message ->
                         Toast.makeText(activity, "An error occured: $message", Toast.LENGTH_LONG).show()
                     }
+
                 }
                 is Resource.Loading -> {
                     showProgressBar()
                 }
             }
         })
+
+
+
+
     }
 
     private fun hideProgressBar() {
