@@ -110,7 +110,7 @@ class SearchNewsFragment : Fragment() {
     var isLastPage = false
     var isScrolling = false
 
-    val scrollListener = object : RecyclerView.OnScrollListener() {
+    private val scrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
 
