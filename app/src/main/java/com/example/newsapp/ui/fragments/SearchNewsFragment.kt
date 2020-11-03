@@ -67,6 +67,7 @@ class SearchNewsFragment : Fragment() {
                     if(editable.toString().isNotEmpty()) {
                         viewModel.getSearchNews(editable.toString())
                     }
+
                 }
             }
         }
@@ -75,7 +76,7 @@ class SearchNewsFragment : Fragment() {
             when(response) {
                 is Resource.Success -> {
                     hideProgressBar()
-                    no_wifi.isVisible = false
+                    //no_wifi.isVisible = false
                     response.data?.let { newsResponse ->
                         newsAdapter.differ.submitList(newsResponse.articles.toList())
                         val totalPages = newsResponse.totalResults / Constants.QUERY_PAGE_SIZE + 2
@@ -90,7 +91,7 @@ class SearchNewsFragment : Fragment() {
                     response.message?.let { message ->
                         Toast.makeText(activity, "An error occured: $message", Toast.LENGTH_LONG).show()
                     }
-                    no_wifi.isVisible = true
+
                 }
                 is Resource.Loading -> {
                     showProgressBar()
