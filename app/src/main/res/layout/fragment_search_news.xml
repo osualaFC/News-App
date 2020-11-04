@@ -30,13 +30,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etSearch"
         tools:layout_editor_absoluteX="0dp" />
-    <ImageView
-        android:id="@+id/no_wifi"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/no_wifi"
-        android:visibility="gone"
-       android:backgroundTint="@color/colorPrimary"/>
+
 
     <ProgressBar
         android:id="@+id/paginationProgressBar"
