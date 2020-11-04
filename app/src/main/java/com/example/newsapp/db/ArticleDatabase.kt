@@ -40,7 +40,3 @@ abstract class ArticleDatabase : RoomDatabase(){
                 .build()
     }
 }
-/**SETTING UP ROOM
- * Create ur Entity
- * Create the Dao and its accompany funcs
- * Create  the database**/
