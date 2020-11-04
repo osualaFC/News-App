@@ -15,7 +15,7 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder> (){
 
     class ArticleViewHolder(itemView : View):RecyclerView.ViewHolder(itemView)
 
-    /**setUp DiffUtil**/
+
     private val differCallback = object : DiffUtil.ItemCallback<Article>(){
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
            return oldItem.url == newItem.url
@@ -29,7 +29,7 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder> (){
     /**tool that takes the list and compare them**/
     val differ = AsyncListDiffer(this, differCallback)
 
-    /**Adapter funcs**/
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_article_preview, parent, false)
         return ArticleViewHolder(view)

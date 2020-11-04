@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 import retrofit2.Response
 import java.io.IOException
 
-class NewsViewModel(application: Application, val newsRepository: NewsRepository) : AndroidViewModel(application) {
+class NewsViewModel(application: Application, private val newsRepository: NewsRepository) : AndroidViewModel(application) {
 
 
     val breakingNews :MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
@@ -65,7 +65,6 @@ class NewsViewModel(application: Application, val newsRepository: NewsRepository
 
 
 
-
     private fun handleSearchNewsResponse(response: Response<NewsResponse>) : Resource<NewsResponse> {
         if(response.isSuccessful) {
             response.body()?.let { resultResponse ->
@@ -83,15 +82,19 @@ class NewsViewModel(application: Application, val newsRepository: NewsRepository
         return Resource.Error(response.message())
     }
 
+
     fun saveArticle(article: Article) = viewModelScope.launch {
         newsRepository.insert(article)
     }
 
+
     fun getSavedNews() = newsRepository.getSavedNews()
+
 
     fun deleteArticle(article: Article) = viewModelScope.launch {
         newsRepository.deleteArticle(article)
     }
+
 
     private suspend fun safeSearchNewsCall(searchQuery: String) {
         searchNews.postValue(Resource.Loading())

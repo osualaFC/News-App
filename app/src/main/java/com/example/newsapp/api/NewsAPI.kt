@@ -7,8 +7,8 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface NewsAPI {
-/**setUp to get headlines from api*/
-    @GET("v2/top-headlines")
+
+    @GET("top-headlines")
     suspend fun getBreakingNews(
         @Query("country")
         countryCode: String = "ng",
@@ -20,8 +20,8 @@ interface NewsAPI {
         apiKey:String =API_KEY
     ): Response<NewsResponse>
 
-    /**setUp to get all news from api**/
-    @GET("v2/everything")
+
+    @GET("everything")
     suspend fun searchNews(
         @Query("q")
         querySearch: String,
@@ -34,7 +34,3 @@ interface NewsAPI {
     ): Response<NewsResponse>
 }
 
-/**
- * setUp ur json object
- * create the interface u will use to interact with the api
- * setUp retrofit Instance**/

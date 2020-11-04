@@ -11,7 +11,7 @@ class RetrofitInstance {
     companion object{
 
         private val retrofit by lazy{
-            /**enables you to log responses of retrofit--check dependency**/
+            /**enables you to log responses of retrofit**/
             val logging = HttpLoggingInterceptor()
             /**enables u to see the actual response**/
             logging.setLevel(HttpLoggingInterceptor.Level.BODY)
